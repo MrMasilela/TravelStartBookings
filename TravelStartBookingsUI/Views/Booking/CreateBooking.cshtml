@@ -1,0 +1,81 @@
+﻿@using TravelStartBookings.Models
+@model BookingRequest
+
+@{
+    ViewData["Title"] = "Create Booking";
+    string today = DateTime.Now.ToString("yyyy-MM-dd");
+}
+
+<h2>Create Booking</h2>
+
+<form asp-action="CreateBooking" method="post">
+    <div class="col-md-2">
+        <label asp-for="RoomId" class="control-label"></label>
+        <input asp-for="RoomId" class="form-control" readonly />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" required />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" required />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-2">
+        <label asp-for="CheckInDate" class="control-label"></label>
+        <input asp-for="CheckInDate" type="date" class="form-control" required min="@today"/>
+        <span asp-validation-for="CheckInDate" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-2">
+        <label asp-for="CheckOutDate" class="control-label"></label>
+        <input asp-for="CheckOutDate" type="date" class="form-control" required min="@today"/>
+        <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+    </div>
+
+
+    <div class="col-md-4">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" type="email" class="form-control" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" type="tel" class="form-control" required />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" required />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" required />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-2">
+        <label asp-for="PostalCode" class="control-label"></label>
+        <input asp-for="PostalCode" class="form-control" required />
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Book Now</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

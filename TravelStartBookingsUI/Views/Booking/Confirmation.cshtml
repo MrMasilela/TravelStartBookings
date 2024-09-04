@@ -1,0 +1,25 @@
+﻿@using TravelStartBookings.Models
+@model BookingResponse
+
+@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+
+<form asp-action="ReturnToSearch" method="post">
+<h2>Booking Confirmation</h2>
+
+<p>Thank you, @Model.FirstName @Model.LastName, for your booking!</p>
+
+<p>Your booking details:</p>
+<ul>
+    <li><strong>Room ID:</strong> @Model.RoomId</li>
+    <li><strong>Check-In Date:</strong> @Model.CheckInDate.ToString("d")</li>
+    <li><strong>Check-Out Date:</strong> @Model.CheckOutDate.ToString("d")</li>
+    <li><strong>Contact Email:</strong> @Model.Email</li>
+    <li><strong>Contact Phone:</strong> @Model.Phone</li>
+</ul>
+
+<p>We look forward to your stay!</p>
+<br/>
+<button class="btn btn-primary">Return To Search</button>
+</form>

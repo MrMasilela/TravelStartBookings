@@ -1,0 +1,57 @@
+﻿@using TravelStartBookings.Models
+@model RoomDetails
+
+@{
+    ViewData["Title"] = "Room Details";
+
+}
+
+
+<div class="container mt-4">  
+    <div class="row">
+        <div class="col-md-6">                
+            <div id="carouselRoomImages" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.Images.Count; i++)
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src=@Url.Content(Model.Images[i].ImageUrl) class="d-block w-100" alt="Room Image">
+
+                            
+                        </div>
+                    }                    
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselRoomImages" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselRoomImages" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>@Model.RoomType</h4>
+            <p><strong>Price Per Night:</strong> @Model.PricePerNight.ToString("C")</p>
+            <p><strong>Capacity:</strong> @Model.Capacity Guests</p>
+            <p><strong>Amenities:</strong>
+                <ul>
+                        @foreach (var item in Model.Amenities)
+                        {
+                            <li class="list-group-item">@item.Name</li>
+                        }
+                </ul>
+            
+            </p>
+            <p><strong>Description:</strong> @Model.Description</p>
+                
+                    <button type="submit" class="btn btn-light mt-2">
+                        @Html.ActionLink("Book Now", "Book", new { roomId = Model.Id}) 
+                    </button>           
+                
+        </div>
+    </div>
+</div>
+
+

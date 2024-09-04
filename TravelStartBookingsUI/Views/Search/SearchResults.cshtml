@@ -1,0 +1,45 @@
+﻿@using TravelStartBookings.Models
+@model List<RoomSearchResponse>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2 class="d-flex justify-content-center align-items-center">Available Rooms</h2>
+<hr />
+@if (Model == null || !Model.Any())
+{
+    <p class="d-flex justify-content-center align-items-center">No available rooms found for the given criteria.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Hotel</th>
+                <th>Capacity</th>
+                <th>Price Per Night</th>
+                <th>Description</th>               
+                <th>View Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>
+                        <img src= @Url.Content(room.HotelImageUrl) alt="Room Image" style="max-width: 150px;" />                        
+                    </td>                   
+                    <td>@room.HotelName</td>
+                    <td>@room.Capacity</td>
+                    <td>@room.PricePerNight.ToString("C")</td>
+                    <td>@room.RoomType</td>                    
+                    <td>
+                        @Html.ActionLink("View","Details",new {id = room.Id})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

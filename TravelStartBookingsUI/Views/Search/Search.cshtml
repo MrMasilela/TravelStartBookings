@@ -1,0 +1,32 @@
+﻿@using TravelStartBookings.Models
+@model SearchRequest
+
+@{
+    ViewData["Title"] = "Search Rooms";
+    string today = DateTime.Now.ToString("yyyy-MM-dd");
+}
+
+<h2 class="d-flex justify-content-center align-items-center">Search for Available Rooms</h2>
+<hr />
+<form asp-action="SearchResults" method="post">
+    <div class="d-flex justify-content-center align-items-center">
+
+        <div class="col-md-2">
+            <div class="form-check-inline">
+                <label asp-for="CheckInDate">Check-in Date</label>
+                <input asp-for="CheckInDate" type="date" class="form-control" id="checkInDate" name="checkInDate" required min="@today" />
+
+                <label asp-for="CheckOutDate">Check-out Date</label>
+                <input asp-for="CheckOutDate" type="date" class="form-control" id="checkOutDate" name="checkOutDate" required min="@today" />
+
+                <label asp-for="NumberOfGuest">Number of Guests</label>
+                <input asp-for="NumberOfGuest" type="number" class="form-control" id="numberOfGuest" name="numberOfGuest" required min="1" />
+            </div>
+            <br />
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>        
+    </div>
+    
+</form>
